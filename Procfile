@@ -1,1 +1,1 @@
-web: gunicorn jsonapi.wsgi --log-file
+web: gunicorn jsonapi.wsgi
