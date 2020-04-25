@@ -22,6 +22,14 @@ class MyPost(generics.ListCreateAPIView):
         print(user)
         return Post.objects.filter(user_id = user)
 
+
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializers
+
+@permission_classes([IsAuthenticated])
+class PostSearch(generics.ListCreateAPIView):
+    filter_backends = (filters.SearchFilter,)
+    queryset = Post.objects.all()
+    serializer_class = PostSerializers
+    search_fields = ['title', 'description',]
